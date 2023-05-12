@@ -1,14 +1,13 @@
 package avl;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNull;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.Comparator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
 
 /**
  * Created with IntelliJ IDEA. User: Antonio J. Nebro Date: 08/07/13
@@ -18,13 +17,13 @@ public class AvlTreeTest {
   AvlTree<Integer> avlTree;
   Comparator<?> comparator;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     comparator = Comparator.comparingInt((Integer o) -> o);
     avlTree = new AvlTree(comparator);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     avlTree = null;
     comparator = null;
@@ -32,19 +31,19 @@ public class AvlTreeTest {
 
   @Test
   public void testAvlIsEmpty() throws Exception {
-    assertTrue("TestAvlIsEmpty", avlTree.avlIsEmpty());
+    assertTrue(avlTree.avlIsEmpty(), "TestAvlIsEmpty");
 
     avlTree.insertTop(new AvlNode(5));
-    assertFalse("TestAvlIsEmpty", avlTree.avlIsEmpty());
+    assertFalse(avlTree.avlIsEmpty(), "TestAvlIsEmpty");
   }
 
   @Test
   public void testInsertTop() throws Exception {
     AvlNode<Integer> node = new AvlNode(4);
     avlTree.insertTop(node);
-    assertEquals("TestInsertTop", node, avlTree.getTop());
+    assertEquals(node, avlTree.getTop(), "TestInsertTop");
     String tree = " | 4";
-    assertEquals("TestInsertTop", tree, avlTree.toString());
+    assertEquals( tree, avlTree.toString(), "TestInsertTop");
   }
 
   @Test
@@ -53,9 +52,9 @@ public class AvlTreeTest {
     AvlNode<Integer> node2 = new AvlNode<Integer>(5);
     AvlNode<Integer> node3 = new AvlNode<Integer>(5);
 
-    assertEquals("testCompareNodes", -1, avlTree.compareNodes(node1, node2));
-    assertEquals("testCompareNodes", 1, avlTree.compareNodes(node3, node1));
-    assertEquals("testCompareNodes", 0, avlTree.compareNodes(node2, node3));
+    assertEquals (-1, avlTree.compareNodes(node1, node2), "testCompareNodes");
+    assertEquals( 1, avlTree.compareNodes(node3, node1), "testCompareNodes");
+    assertEquals( 0, avlTree.compareNodes(node2, node3), "testCompareNodes");
   }
 
   /*
@@ -74,8 +73,8 @@ public class AvlTreeTest {
     AvlNode<Integer> nodeLeft = new AvlNode<Integer>(4);
     AvlNode<Integer> nodeRight = new AvlNode<Integer>(9);
 
-    assertEquals("testInsertingSecondSmallerElement", -1, avlTree.searchClosestNode(nodeLeft));
-    assertEquals("testInsertingSecondSmallerElement", node, nodeLeft.getClosestNode());
+    assertEquals( -1, avlTree.searchClosestNode(nodeLeft), "testInsertingSecondSmallerElement");
+    assertEquals(node, nodeLeft.getClosestNode(), "testInsertingSecondSmallerElement");
     assertEquals("testInsertingSecondSmallerElement", +1, avlTree.searchClosestNode(nodeRight));
     assertEquals("testInsertingSecondSmallerElement", node, nodeRight.getClosestNode());
     assertEquals("testInsertingSecondSmallerElement", 0, avlTree.searchClosestNode(node));
