@@ -784,4 +784,74 @@ public class AvlTreeTest {
     String tree = " | 8 | 3 | 2 | 7 | 9";
     assertEquals(tree, avlTree.toString());
   }
+
+
+  @Nested
+  @DisplayName("Tests for rebalance()")
+  class rebalanceTestCases{
+
+    @Test
+    @DisplayName("Rebalance an unbalanced node")
+    void GIVEN_notBalancedAVLTree_WHEN_rebalance_THEN_balancedTreeNode(){
+      avlTree.insert(3);
+      avlTree.insert(2);
+      avlTree.insert(1);
+      avlTree.insert(4);
+      avlTree.insert(5);
+
+      avlTree.rebalance(avlTree.getTop());
+
+      assertEquals(1, avlTree.getBalance(avlTree.getTop()));
+    }
+
+    @Test
+    @DisplayName("Rebalance an unbalanced node when node.getParent().getLeft() == node")
+    void GIVEN_notBalancedAVLTree_WHEN_rebalanceLeftParentNode_THEN_balancedTreeNode(){
+      avlTree.insert(5);
+      avlTree.insert(3);
+      avlTree.insert(7);
+      avlTree.insert(2);
+      avlTree.insert(4);
+      avlTree.insert(6);
+      avlTree.insert(8);
+
+      AvlNode<Integer> unbalancedNode = avlTree.search(3);
+      AvlNode<Integer> parentNode = unbalancedNode.getParent();
+      parentNode.setLeft(unbalancedNode);
+
+      avlTree.leftRotation(unbalancedNode);
+
+      assertEquals(1, avlTree.getBalance(unbalancedNode));
+    }
+
+
+    @Test
+    @DisplayName("Rebalance an unbalanced node with double left rotation")
+    void GIVEN_notBalancedAVLTree_WHEN_rebalance_THEN_balancedTreeNodeWithDoubleLeftRotation(){
+      avlTree.insert(3);
+      avlTree.insert(1);
+      avlTree.insert(2);
+
+      avlTree.rebalance(avlTree.getTop());
+      assertEquals(2, avlTree.getTop().getItem());
+      assertEquals(1, avlTree.getTop().getLeft().getItem());
+      assertEquals(3, avlTree.getTop().getRight().getItem());
+    }
+
+
+
+    @Test
+    @DisplayName("Rebalance an unbalanced node with double right rotation")
+    void GIVEN_notBalancedAVLTree_WHEN_rebalance_THEN_balancedTreeNodeWithDoubleRightRotation(){
+      avlTree.insert(1);
+      avlTree.insert(3);
+      avlTree.insert(2);
+
+      avlTree.rebalance(avlTree.getTop());
+      assertEquals(2, avlTree.getTop().getItem());
+      assertEquals(1, avlTree.getTop().getLeft().getItem());
+      assertEquals(3, avlTree.getTop().getRight().getItem());
+    }
+  }
+
 }
