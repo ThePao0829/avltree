@@ -28,7 +28,7 @@ import java.util.Comparator;
  * Created with IntelliJ IDEA. User: Antonio J. Nebro Date: 08/07/13 Time: 15:51 Class implementing
  * Avl trees.
  */
-public class AvlTree<T> {
+public class  AvlTree<T> {
 
   AvlNode<T> top;
   Comparator comparator;
