@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: avl.AvlTreeTest
 -------------------------------------------------------------------------------
-Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in avl.AvlTreeTest
+Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in avl.AvlTreeTest
 avl.AvlTreeTest.testInserting7_4_3_2_1  Time elapsed: 0 s
 avl.AvlTreeTest.testInserting7_8_9_10_11  Time elapsed: 0 s
 avl.AvlTreeTest.testDeletingNodesWithTwoLeaves  Time elapsed: 0 s
