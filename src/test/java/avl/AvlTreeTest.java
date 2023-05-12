@@ -294,7 +294,7 @@ public class AvlTreeTest {
       assertEquals(avlTree.search(20), avlTree.findSuccessor(node));
 
       String tree = " | 20 | 8 | 4 | 12 | 10 | 14 | 22 | 24";
-      assertEquals("testSearchNode", tree, avlTree.toString());
+      assertEquals(tree, avlTree.toString());
     }
   }
 
