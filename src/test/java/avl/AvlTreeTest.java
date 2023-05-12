@@ -26,9 +26,6 @@ public class AvlTreeTest {
     avlTree = null;
     comparator = null;
   }
-
-
-
   @Nested
   @DisplayName("Test cases for delete an item or node")
   class deleteTestCases{
